@@ -10,9 +10,7 @@ public class Test {
         test.runTest(5000, 10);
     }
 
-    public Test() {
-
-    }
+    public Test() {}
 
     public int[] fillRandom(int number, int random) {
         int[] array = new int[number];
