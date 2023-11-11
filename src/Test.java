@@ -1,16 +1,20 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
 import java.util.Random;
 
 public class Test {
+    private int runTime;
+    private int accuracy;
     public static void main(String[] args) {
-        Test test = new Test();
-        test.runTest(5000, 10);
+        Test test = new Test(200, 20000);
+        test.runTest();
     }
 
-    public Test() {}
+    public Test(int runTime, int accuracy) {
+        this.runTime = runTime;
+        this.accuracy = accuracy;
+    }
 
     public int[] fillRandom(int number, int random) {
         int[] array = new int[number];
@@ -21,30 +25,37 @@ public class Test {
         return array;
     }
 
-    public void runTest(int runTime, int accuracy) {
+    public void runTest() {
+        int run = this.runTime;
+        int acc = this.accuracy;
         FileWriter write;
         try {
+            int array[];
+            MergeSort mergeSort;
+            SelectionSort selectionSort;
+            long time, time2, time3, time4, difference, difference2;
             write = createFile();
-            for (int i = 1; i <= runTime; i++) {
+            write.write(",MergeSort,SelectionSort\n");
+            for (int i = 1; i <= run; i++) {
                 long total = 0;
                 long total2 = 0;
-                for (int j = 0; j < accuracy; j++) {
-                    int[] array = fillRandom(i, i);
-                    MergeSort mergeSort = new MergeSort(array);
-                    SelectionSort selectionSort = new SelectionSort(array);
-                    long time = System.nanoTime();
+                for (int j = 0; j < acc; j++) {
+                    array = fillRandom(i, i);
+                    mergeSort = new MergeSort(array);
+                    selectionSort = new SelectionSort(array);
+                    time = System.nanoTime();
                     mergeSort.sortArray();
-                    long time2 = System.nanoTime();
-                    long difference = time2 - time;
+                    time2 = System.nanoTime();
+                    difference = time2 - time;
                     total += difference;
-                    long time3 = System.nanoTime();
+                    time3 = System.nanoTime();
                     selectionSort.sortArray();
-                    long time4 = System.nanoTime();
-                    long difference2 = time4 - time3;
+                    time4 = System.nanoTime();
+                    difference2 = time4 - time3;
                     total2 += difference2;
                 }
-                write.write(total / 10 + ",");
-                write.write(total2 / 10 + "\n");
+                write.write(i + "," + total / acc + ",");
+                write.write(total2 / acc + "\n");
             }
             write.close();
         } catch (IOException e) {
@@ -54,8 +65,7 @@ public class Test {
     }
 
     public FileWriter createFile() throws IOException {
-        Date date = new Date();
-        File output = new File("../data/" + date.getTime() + ".csv");
+        File output = new File("../data/" + this.runTime + "-" + this.accuracy + ".csv");
         try {
             if (output.createNewFile()) {
                 System.out.println("Creating new file: " + output.getName());
