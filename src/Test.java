@@ -7,7 +7,7 @@ public class Test {
     private int runTime;
     private int accuracy;
     public static void main(String[] args) {
-        Test test = new Test(200, 20000);
+        Test test = new Test(500, 20000);
         test.runTest();
     }
 
