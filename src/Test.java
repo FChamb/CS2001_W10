@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.util.Random;
 
 public class Test {
-    private int runTime;
-    private int accuracy;
+    private int runTime = 500;
+    private int accuracy = 20000;
     public static void main(String[] args) {
-        Test test = new Test(500, 20000);
+        Test test = new Test();
         test.runTest();
     }
+
+    public Test() {}
 
     public Test(int runTime, int accuracy) {
         this.runTime = runTime;
