@@ -16,11 +16,27 @@ public class Test {
         this.accuracy = accuracy;
     }
 
-    public int[] fillRandom(int number, int random) {
+    public int[] fillRandom(int number) {
         int[] array = new int[number];
         Random generate = new Random();
         for (int i = 0; i < number; i++) {
-            array[i] = generate.nextInt(random);
+            array[i] = generate.nextInt(number);
+        }
+        return array;
+    }
+
+    public int[] fillOrdered(int number) {
+        int[] array = new int[number];
+        for (int i = 0; i < number; i++) {
+            array[i] = i;
+        }
+        return array;
+    }
+
+    public int[] fillReversed(int number) {
+        int[] array = new int[number];
+        for (int i = number - 1; i >= 0; i--) {
+            array[i] = i;
         }
         return array;
     }
@@ -40,7 +56,7 @@ public class Test {
                 long total = 0;
                 long total2 = 0;
                 for (int j = 0; j < acc; j++) {
-                    array = fillRandom(i, i);
+                    array = fillRandom(i);
                     mergeSort = new MergeSort(array);
                     selectionSort = new SelectionSort(array);
                     time = System.nanoTime();
