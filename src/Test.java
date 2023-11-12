@@ -8,6 +8,7 @@ public class Test {
     private int accuracy = 20000;
     public static void main(String[] args) {
         Test test = new Test();
+//        test.testFunctions();
         test.runTest();
     }
 
@@ -41,6 +42,67 @@ public class Test {
             array[i] = i;
         }
         return array;
+    }
+
+    public void testFunctions() {
+        int[] array = fillRandom(10);
+        int[] array2 = fillRandom(9);
+        System.out.println("________Merge________");
+        MergeSort mergeSort = new MergeSort(array);
+        MergeSort mergeSort2 = new MergeSort(array2);
+        System.out.println("Here are the arrays...");
+        System.out.println("\nEven array:");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("\nOdd array:");
+        for (int i = 0; i < array2.length; i++) {
+            System.out.print(array2[i] + " ");
+        }
+        System.out.println("\nSorting...");
+        mergeSort.sortArray();
+        mergeSort2.sortArray();
+        System.out.println("Returning result...");
+        array = mergeSort.getArray();
+        array2 = mergeSort2.getArray();
+        System.out.println("\nEven array:");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("\nOdd array:");
+        for (int i = 0; i < array2.length; i++) {
+            System.out.print(array2[i] + " ");
+        }
+        System.out.println("\n_____________________");
+        array = fillRandom(10);
+        array2 = fillRandom(9);
+        System.out.println("________Selection________");
+        SelectionSort selectionSort = new SelectionSort(array);
+        SelectionSort selectionSort2 = new SelectionSort(array2);
+        System.out.println("Here are the arrays...");
+        System.out.println("\nEven array:");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("\nOdd array:");
+        for (int i = 0; i < array2.length; i++) {
+            System.out.print(array2[i] + " ");
+        }
+        System.out.println("\nSorting...");
+        selectionSort.sortArray();
+        selectionSort2.sortArray();
+        System.out.println("Returning result...");
+        array = selectionSort.getArray();
+        array2 = selectionSort2.getArray();
+        System.out.println("\nEven array:");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println("\nOdd array:");
+        for (int i = 0; i < array2.length; i++) {
+            System.out.print(array2[i] + " ");
+        }
+        System.out.println("\n_________________________");
     }
 
     public void runTest() {

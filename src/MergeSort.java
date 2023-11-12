@@ -14,7 +14,7 @@ public class MergeSort {
 
     private void sort(int left, int right) {
         if (left < right) {
-            int middle = (left + right) / 2;
+            int middle = left + (right - left) / 2;
             sort(left, middle);
             sort(middle + 1, right);
             merge(left, middle, right);
@@ -27,7 +27,7 @@ public class MergeSort {
         int[] leftSide = new int[size1];
         int[] rightSide = new int[size2];
         for (int i = 0; i < size1; i++) {
-            leftSide[i] = this.array[left + 1];
+            leftSide[i] = this.array[left + i];
         }
         for (int j = 0; j < size2; j++) {
             rightSide[j] = this.array[middle + 1 + j];
@@ -40,7 +40,7 @@ public class MergeSort {
                 this.array[k] = leftSide[i];
                 i++;
             } else {
-                this.array[k] = rightSide[i];
+                this.array[k] = rightSide[j];
                 j++;
             }
             k++;
